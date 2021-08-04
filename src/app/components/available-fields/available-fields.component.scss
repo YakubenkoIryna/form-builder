@@ -1,0 +1,48 @@
+.available-fields__wrapper{
+  margin: 60px 30px;
+
+}
+.available-fields__item{
+  margin: 12px;
+}
+
+.button-item{
+  width: 90px;
+  height: 30px;
+  border-style: solid;
+  background-color: grey;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+.input-item{
+  width: 350px;
+  height: 35px;
+  border-style: solid;
+  color: grey;
+  font-size: 15px;
+  font-weight: normal;
+  border-radius: 10px;
+}
+.textarea-item{
+  border-radius: 10px;
+  width: 350px;
+  height: 120px;
+  border-style: solid;
+  font-size: 18px;
+  font-weight: bold;
+}
+.select-item{
+  width: 120px;
+  height: 35px;
+  border-style: solid;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+.checkbox-item{
+  width: 16px;
+  height: 13px;
+}

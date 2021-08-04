@@ -1,0 +1,31 @@
+<div class="login-wrapper">
+  <form class="form-login" [formGroup]="form" (ngSubmit)="submit()">
+  <h2>Login</h2>
+  <div
+    class="login-control"
+    [ngClass]="{invalid: form.get('email').invalid && form.get('email').touched  && form.get('email').dirty}"
+  >
+    <label for="email">Email</label>
+    <input class="form-input" name="email" id="email" type="email" formControlName="email" ngModel email="true">
+    <div
+      *ngIf="form.get('email').invalid && form.get('email').touched && form.get('email').dirty "
+      class="validation">
+      <small
+         class="error-validation"
+         *ngIf="form.get('email').errors"
+      >Please enter correct email!</small>
+    </div>
+  </div>
+    <div class="login-control">
+    <label for="password">Password</label>
+    <input class="form-input" id="password" type="password" formControlName="password">
+  </div>
+
+  <button
+
+    type="submit"
+    class="btn btn-submit"
+    [disabled]="form.invalid"
+  >Login</button>
+</form>
+</div>

@@ -1,0 +1,38 @@
+.login-wrapper{
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: #bfe3dc;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-login{
+  max-width: 300px;
+  align-self: center;
+  border: 1px grey solid;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: white;
+}
+.form-input{
+  border-radius: 5px;
+}
+
+.error-validation{
+  color: red;
+}
+.btn-submit{
+  margin: 5px;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+.btn-submit:hover{
+  border: 1px solid black;
+  color: black;
+
+}
+
+
+
+

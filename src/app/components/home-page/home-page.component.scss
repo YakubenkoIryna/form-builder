@@ -1,0 +1,16 @@
+.home-page{
+  &__container{
+    width: 100%;
+    height: 90vh;
+    background: #bfe3dc;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    font: small-caption;
+  }
+  &__title{
+    font-size: 60px;
+    text-align: center;
+    margin-top: 20vh;
+  }
+}

@@ -1,0 +1,27 @@
+.form-builder-sections{
+  width: 100%;
+  display: flex;
+
+}
+app-accordion{
+  width: 33vw;
+  border: 1px solid grey;
+  height: 100vh;
+}
+.draggable-forms{
+  display: flex;
+  width: 67vw;
+  height: 100vh;
+  border: 1px solid grey;
+}
+
+app-form-builder,
+app-available-fields{
+
+  width: 33vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid grey;
+}
+
