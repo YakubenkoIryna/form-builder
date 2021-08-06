@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
-import {Router} from "@angular/router";
 import {User} from "../../interface";
 
 
@@ -13,7 +12,6 @@ import {User} from "../../interface";
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
-
 
   constructor( public auth: AuthService) { }
 

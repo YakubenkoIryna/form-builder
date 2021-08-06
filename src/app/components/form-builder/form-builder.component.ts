@@ -1,20 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import {CdkDragDrop, copyArrayItem, moveItemInArray} from "@angular/cdk/drag-drop";
-
+import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
+import {Store} from "@ngrx/store";
+import {IFormElementStyleState} from "../../interface";
+import {AddElementAction} from "../../state/forms.actions";
 
 @Component({
     selector: 'app-form-builder',
     templateUrl: './form-builder.component.html',
     styleUrls: ['./form-builder.component.scss']
 })
+
 export class FormBuilderComponent implements OnInit {
 
-    addedObjects = []
+    addedObjects = [];
+    id: number;
+    elementNew;
 
-    constructor() { }
+    constructor( private store$: Store<IFormElementStyleState>) { }
 
-    ngOnInit(): void {
+    ngOnInit(): void { }
+
+    addElements( id: number, title: string){
+        this.store$.dispatch( new AddElementAction({id, title}))
     }
+
     onDrop(event: CdkDragDrop<string[]>){
         if (event.previousContainer === event.container){
             moveItemInArray(
@@ -22,16 +31,10 @@ export class FormBuilderComponent implements OnInit {
                 event.previousIndex,
                 event.currentIndex);
         } else{
-            // copyArrayItem(
-                // event.previousContainer.data,
-                // event.container.data,
-                // event.previousIndex,
-                // event.currentIndex);
-            this.addedObjects.push(event.previousContainer.data[event.previousIndex])
-            console.log("111111111111",this.addedObjects)
+            this.id = new Date().getTime();
+            this.elementNew = event.previousContainer.data[event.previousIndex];
+            this.addedObjects.push(event.previousContainer.data[event.previousIndex]);
+            this.addElements( this.id, this.elementNew.title)
         }
-        console.log('event', event)
-
     }
-
 }

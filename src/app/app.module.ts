@@ -7,27 +7,36 @@ import {MainLayoutComponent} from "./components/main-layout/main-layout.componen
 import {HomePageComponent} from "./components/home-page/home-page.component";
 import {AdminModule} from "./admin.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     MainLayoutComponent,
     HomePageComponent,
-
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AdminModule,
     BrowserAnimationsModule,
-
-
+    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    }),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    EffectsModule.forRoot([]),
+    AdminModule,
+    StoreRouterConnectingModule.forRoot()
   ],
   providers: [],
   exports: [
-    HeaderComponent,
     MainLayoutComponent
   ],
   bootstrap: [AppComponent]

@@ -1,6 +1,5 @@
 .available-fields__wrapper{
   margin: 60px 30px;
-
 }
 .available-fields__item{
   margin: 12px;
@@ -18,7 +17,7 @@
   cursor: pointer;
 }
 .input-item{
-  width: 350px;
+  max-width: 350px;
   height: 35px;
   border-style: solid;
   color: grey;
@@ -28,7 +27,7 @@
 }
 .textarea-item{
   border-radius: 10px;
-  width: 350px;
+  max-width: 350px;
   height: 120px;
   border-style: solid;
   font-size: 18px;

@@ -12,6 +12,10 @@ import {FormBuilderComponent} from "./components/form-builder/form-builder.compo
 import {AvailableFieldsComponent} from "./components/available-fields/available-fields.component";
 import {AuthGuard} from "./services/auth.guard";
 import {DragDropModule} from "@angular/cdk/drag-drop";
+import {CdkAccordionModule} from '@angular/cdk/accordion';
+import {HomePageComponent} from "./components/home-page/home-page.component";
+import {StoreModule} from "@ngrx/store";
+import {FormReducer} from "./state/forms.reducers";
 
 
 @NgModule({
@@ -29,16 +33,19 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-
+    CommonModule,
     RouterModule.forChild([
       {
         path: '', component: AdminLayoutComponent, children: [
+          {path: '', component: HomePageComponent},
           {path: 'login', component: LoginComponent},
           {path: 'form-builder', component: FormBuilderPageComponent, canActivate: [AuthGuard]}
         ]
       }
     ]),
     DragDropModule,
+    CdkAccordionModule,
+    StoreModule.forRoot({ formsB : FormReducer}),
 
   ],
   exports: [RouterModule, LoginComponent],

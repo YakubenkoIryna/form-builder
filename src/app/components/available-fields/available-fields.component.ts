@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {CdkDragDrop, moveItemInArray, transferArrayItem,} from "@angular/cdk/drag-drop";
+import {CdkDragDrop, transferArrayItem} from "@angular/cdk/drag-drop";
 
 export interface obj {
-    available: boolean
     title: string
-    id?: number
+    id: number
 }
 
 @Component({
@@ -14,17 +13,24 @@ export interface obj {
     styleUrls: ['./available-fields.component.scss']
 })
 export class AvailableFieldsComponent implements OnInit {
+
     objects: obj[] = []
 
-    constructor(private http: HttpClient) {
-    }
+    constructor(private http: HttpClient) { }
 
     ngOnInit() {
         this.http.get<obj[]>('http://localhost:3000/components')
             .subscribe(objects => {
-                console.log('Response', objects)
-                this.objects = objects
+                this.objects = objects;
             })
     }
-
+    onDrop(event: CdkDragDrop<string[]>){
+        if (event.previousContainer !== event.container){
+                transferArrayItem(
+                event.previousContainer.data,
+                event.container.data.concat(),
+                event.previousIndex,
+                event.currentIndex);
+        }
+    }
 }

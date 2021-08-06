@@ -1,14 +1,12 @@
-<div class="form-builder"
-     cdkDropList
-     [cdkDropListData]="addedObjects"
+<h1 class="form-builder-header">Form Builder</h1>
+<div class="form-builder" cdkDropList [cdkDropListData]="addedObjects"
      (cdkDropListDropped)="onDrop($event)">
-       <div class="added-objects" *ngFor="let addedObj of addedObjects"
+     <div class="added-objects" *ngFor="let addedObj of addedObjects"
          [ngSwitch]="addedObj.title">
-
         <ng-container *ngSwitchCase="'input'">
             <div cdkDrag>
-            <label>Input</label>
-            <input class="input-item" type="text" placeholder="Input">
+                <label>Input</label>
+                <input class="input-item" type="text" placeholder="Input">
             </div>
         </ng-container>
         <ng-container *ngSwitchCase="'button'">
@@ -23,13 +21,13 @@
         </ng-container>
         <ng-container *ngSwitchCase="'checkbox'">
             <div cdkDrag>
-            <input class="checkbox-item" type="checkbox" id="checkbox" name="checkbox"
-                   checked>
-            <label for="checkbox">Checkbox</label>
+                <input class="checkbox-item" type="checkbox" id="checkbox" name="checkbox"
+                       checked>
+                <label for="checkbox">Checkbox</label>
             </div>
         </ng-container>
-        <ng-container  *ngSwitchCase="'textarea'">
-            <textarea cdkDrag class="textarea-item" placeholder="Textarea" name="textarea" cols="20" rows="3"></textarea>
+        <ng-container *ngSwitchCase="'textarea'">
+            <textarea placeholder="Textarea" cdkDrag class="textarea-item" name="textarea"></textarea>
         </ng-container>
     </div>
 </div>
