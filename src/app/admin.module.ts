@@ -1,21 +1,22 @@
-import {NgModule} from "@angular/core";
-import {LoginComponent} from "./components/login/login.component";
-import {CommonModule} from "@angular/common";
-import {RouterModule} from "@angular/router";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {AdminLayoutComponent} from "./components/admin-layout/admin-layout.component";
-import {AuthService} from "./services/auth.service";
-import {HttpClientModule} from "@angular/common/http";
-import {FormBuilderPageComponent} from "./components/form-builder-page/form-builder-page.component";
-import {AccordionComponent} from "./components/accordion/accordion.component";
-import {FormBuilderComponent} from "./components/form-builder/form-builder.component";
-import {AvailableFieldsComponent} from "./components/available-fields/available-fields.component";
-import {AuthGuard} from "./services/auth.guard";
-import {DragDropModule} from "@angular/cdk/drag-drop";
-import {CdkAccordionModule} from '@angular/cdk/accordion';
-import {HomePageComponent} from "./components/home-page/home-page.component";
-import {StoreModule} from "@ngrx/store";
-import {FormReducer} from "./state/forms.reducers";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { StoreModule } from '@ngrx/store';
+
+import { LoginComponent } from './components/login/login.component';
+import { AdminLayoutComponent } from './components/admin-layout/admin-layout.component';
+import { AuthService } from './services/auth.service';
+import { FormBuilderPageComponent } from './components/form-builder-page/form-builder-page.component';
+import { AccordionComponent } from './components/accordion/accordion.component';
+import { FormBuilderComponent } from './components/form-builder/form-builder.component';
+import { AvailableFieldsComponent } from './components/available-fields/available-fields.component';
+import { AuthGuard } from './services/auth.guard';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { FormReducer } from './reducers/forms/forms.reducers';
 
 
 @NgModule({
@@ -26,7 +27,6 @@ import {FormReducer} from "./state/forms.reducers";
     AccordionComponent,
     FormBuilderComponent,
     AvailableFieldsComponent,
-
   ],
   imports: [
     CommonModule,
@@ -34,6 +34,9 @@ import {FormReducer} from "./state/forms.reducers";
     ReactiveFormsModule,
     HttpClientModule,
     CommonModule,
+    DragDropModule,
+    CdkAccordionModule,
+    StoreModule.forRoot({ formsB : FormReducer}),
     RouterModule.forChild([
       {
         path: '', component: AdminLayoutComponent, children: [
@@ -43,14 +46,8 @@ import {FormReducer} from "./state/forms.reducers";
         ]
       }
     ]),
-    DragDropModule,
-    CdkAccordionModule,
-    StoreModule.forRoot({ formsB : FormReducer}),
-
   ],
   exports: [RouterModule, LoginComponent],
   providers: [AuthService, AuthGuard]
 })
-export class AdminModule{
-
-}
+export class AdminModule{ }

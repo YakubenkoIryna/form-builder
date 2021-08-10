@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../../services/auth.service";
-import {Router} from "@angular/router";
+import { Component } from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 
 @Component({
@@ -8,15 +8,12 @@ import {Router} from "@angular/router";
     templateUrl: './form-builder-page.component.html',
     styleUrls: ['./form-builder-page.component.scss']
 })
-export class FormBuilderPageComponent implements OnInit {
+export class FormBuilderPageComponent {
 
     constructor(
         public auth: AuthService,
         private route: Router
     ) { }
-
-    ngOnInit(): void {
-    }
 
     logout() {
         this.auth.logout()

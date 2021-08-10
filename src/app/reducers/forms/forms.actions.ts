@@ -5,13 +5,13 @@ export enum FormsActionTypes {
     deleteElement = '[DELETE_ELEMENT] delete element'
 }
 
-export class AddElementAction implements Action{
+export class AddElementAction implements Action {
     readonly  type = FormsActionTypes.addElement;
     constructor(
-        public payload: {id: number, title: string}
+        public payload: { id: number, title: string }
     ) { }
 }
-export class DeleteElementAction implements Action{
+export class DeleteElementAction implements Action {
     readonly type = FormsActionTypes.deleteElement;
     constructor(
         public payload: {id:number}

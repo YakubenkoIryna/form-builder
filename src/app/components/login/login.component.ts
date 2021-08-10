@@ -1,42 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../services/auth.service";
-import {IUser} from "../../interface";
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { IUser } from '../../interface';
 
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
-  form: FormGroup;
+    form: FormGroup;
 
-  constructor( public auth: AuthService) { }
-
-  ngOnInit(){
-    this.form = new FormGroup({
-      email: new FormControl(null, [
-        Validators.required,
-        Validators.email
-      ]),
-      password: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(6)
-      ])
-    })
-  }
-  submit(){
-    if (this.form.invalid){
-      return
+    constructor(public auth: AuthService) {
     }
-    const user: IUser = {
-      email: this.form.value.email,
-      password: this.form.value.password
-    }
-    this.auth.login(user)
-    this.form.reset()
 
-  }
+    ngOnInit(): void {
+        this.form = new FormGroup({
+            email: new FormControl(null, [
+                Validators.required,
+                Validators.email
+            ]),
+            password: new FormControl(null, [
+                Validators.required,
+                Validators.minLength(6)
+            ])
+        })
+    }
+
+    submit(): void {
+        if (this.form.invalid) {
+            return
+        }
+        const user: IUser = {
+            email: this.form.value.email,
+            password: this.form.value.password
+        }
+        this.auth.login(user)
+        this.form.reset()
+
+    }
 }

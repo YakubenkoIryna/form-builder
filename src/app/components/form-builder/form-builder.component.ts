@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
-import {Store} from "@ngrx/store";
-import {IFormElementStyleState} from "../../interface";
-import {AddElementAction} from "../../state/forms.actions";
+import { Component } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Store } from '@ngrx/store';
+import { IFormElementStyleState } from '../../interface';
+import { AddElementAction } from '../../reducers/forms/forms.actions';
 
 @Component({
     selector: 'app-form-builder',
@@ -10,33 +10,32 @@ import {AddElementAction} from "../../state/forms.actions";
     styleUrls: ['./form-builder.component.scss']
 })
 
-export class FormBuilderComponent implements OnInit {
+export class FormBuilderComponent {
 
     addedObjects = [];
     id: number;
-    currentElement;
-    elementNew;
+    currentElement: any;
+    elementNew: any;
 
-    constructor( private store$: Store<IFormElementStyleState>) { }
-
-    ngOnInit(): void { }
-
-    addElements( id: number, title: string){
-        this.store$.dispatch( new AddElementAction({id, title}))
+    constructor(private store$: Store<IFormElementStyleState>) {
     }
 
-    onDrop(event: CdkDragDrop<string[]>){
-        if (event.previousContainer === event.container){
+    addElements(id: number, title: string): void {
+        this.store$.dispatch(new AddElementAction({ id, title }))
+    }
+
+    onDrop(event: CdkDragDrop<string[]>): void {
+        if (event.previousContainer === event.container) {
             moveItemInArray(
                 event.container.data,
                 event.previousIndex,
                 event.currentIndex);
-        } else{
+        } else {
             this.id = new Date().getTime();
             this.currentElement = event.previousContainer.data[event.previousIndex];
-            this.elementNew = {...this.currentElement, id: this.id}
+            this.elementNew = { ...this.currentElement, id: this.id }
             this.addedObjects.push(this.elementNew);
-            this.addElements( this.id, this.elementNew.title);
+            this.addElements(this.id, this.elementNew.title);
         }
     }
 }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {CdkDragDrop, transferArrayItem} from "@angular/cdk/drag-drop";
-import {DeleteElementAction} from "../../state/forms.actions";
+import {DeleteElementAction} from "../../reducers/forms/forms.actions";
 import {Store} from "@ngrx/store";
 import {IFormElements, IFormElementStyleState} from "../../interface";
 
@@ -14,20 +14,20 @@ import {IFormElements, IFormElementStyleState} from "../../interface";
 export class AvailableFieldsComponent implements OnInit {
 
     objects: IFormElements[] = []
-    id;
+    id: any;
 
     constructor(
         private http: HttpClient,
         private store$: Store<IFormElementStyleState>
     ){ }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.http.get<IFormElements[]>('http://localhost:3000/components')
             .subscribe(objects => {
                 this.objects = objects;
             })
     }
-    onDrop(event: CdkDragDrop<string[]>){
+    onDrop(event: CdkDragDrop<string[]>): void {
         if (event.previousContainer !== event.container){
                 transferArrayItem(
                 event.previousContainer.data,
@@ -38,7 +38,7 @@ export class AvailableFieldsComponent implements OnInit {
                 this.deleteElements(this.id)
         }
     }
-    deleteElements(id:number){
-        this.store$.dispatch(new DeleteElementAction({id}))
+    deleteElements(id:number): void {
+        this.store$.dispatch(new DeleteElementAction({ id }))
     }
 }

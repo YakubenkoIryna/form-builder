@@ -4,17 +4,17 @@
 .available-fields__item{
   margin: 12px;
 }
-
 .button-item{
   width: 90px;
   height: 30px;
   border-style: solid;
-  background-color: grey;
+  background-color: #808080;
   border-radius: 10px;
   font-size: 15px;
-  font-weight: bold;
+  font-weight: normal;
   text-align: center;
   cursor: pointer;
+  color: white;
 }
 .input-item{
   max-width: 350px;
@@ -32,6 +32,7 @@
   border-style: solid;
   font-size: 18px;
   font-weight: bold;
+  color: grey;
 }
 .select-item{
   width: 120px;
@@ -40,8 +41,14 @@
   border-radius: 10px;
   font-size: 15px;
   font-weight: bold;
+  color: grey;
 }
 .checkbox-item{
   width: 16px;
   height: 13px;
+}
+.checkbox-item:checked{
+  width: 20px;
+  height: 20px;
+  background: #28a745;
 }

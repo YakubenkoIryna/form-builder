@@ -1,41 +1,43 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {IUser} from "../interface";
-import {throwError} from "rxjs";
-import {Router} from "@angular/router";
+import { Injectable, OnInit } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { IUser } from '../interface';
+import { throwError } from 'rxjs';
+
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class AuthService {
+export class AuthService implements OnInit{
 
     url = 'http://localhost:5000/api';
-    token;
+    token: string;
+    error: HttpErrorResponse;
 
     constructor(
         private http: HttpClient,
-        private router:Router
+        public router: Router
     ) { }
 
-    login(user: IUser){
-         let route = this.router
-         this.http.post(this.url + '/authenticate', user)
-             .subscribe({
-                 next(res:any){
-                 localStorage.setItem("ourToken",res.token)
-                 route.navigate(['/form-builder'])
-                 },
-                 error(err){
-                     alert(err.error.errorMessage)
-                 }
-             })
-}
+    ngOnInit(){
+        this.handleError(this.error)
+    }
 
+    login(user: IUser){
+         this.http.post(this.url + '/authenticate', user)
+             .subscribe((res:any) => {
+                  if(res.token){
+                     localStorage.setItem("ourToken",res.token)
+                     this.router.navigate(['/form-builder'])
+                  }
+
+    })
+
+}
     logout(){
       localStorage.removeItem('ourToken')
     }
-
     public get logIn():boolean{
         return (localStorage.getItem('ourToken') !== null)
     }

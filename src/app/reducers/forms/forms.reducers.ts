@@ -1,5 +1,5 @@
-import {FormsActions, FormsActionTypes} from "./forms.actions";
-import {IFormElementStyleState} from "../interface";
+import { FormsActions, FormsActionTypes } from './forms.actions';
+import { IFormElementStyleState } from '../../interface';
 
 export const formReducerNode = 'form-reducer';
 
