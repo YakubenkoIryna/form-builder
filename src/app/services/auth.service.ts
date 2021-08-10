@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {User} from "../interface";
+import {IUser} from "../interface";
 import {throwError} from "rxjs";
 import {Router} from "@angular/router";
 
@@ -13,10 +13,13 @@ export class AuthService {
     url = 'http://localhost:5000/api';
     token;
 
-    constructor(private http: HttpClient, private router:Router) { }
+    constructor(
+        private http: HttpClient,
+        private router:Router
+    ) { }
 
-    login(user: User){
-        let route = this.router
+    login(user: IUser){
+         let route = this.router
          this.http.post(this.url + '/authenticate', user)
              .subscribe({
                  next(res:any){
@@ -26,13 +29,8 @@ export class AuthService {
                  error(err){
                      alert(err.error.errorMessage)
                  }
-
-
              })
-
-
-
-    }
+}
 
     logout(){
       localStorage.removeItem('ourToken')
@@ -44,7 +42,7 @@ export class AuthService {
 
     public handleError(error: HttpErrorResponse){
         if(error.error.errorMessage){
-            alert('You do not have a permission!')
+            window.alert('You do not have a permission!')
         }
         return throwError(error)
     }

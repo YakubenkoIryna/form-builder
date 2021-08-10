@@ -4,30 +4,30 @@
      <div class="added-objects" *ngFor="let addedObj of addedObjects"
          [ngSwitch]="addedObj.title">
         <ng-container *ngSwitchCase="'input'">
-            <div cdkDrag>
+            <div cdkDrag [attr.data-id]="addedObj.id">
                 <label>Input</label>
                 <input class="input-item" type="text" placeholder="Input">
             </div>
         </ng-container>
         <ng-container *ngSwitchCase="'button'">
-            <button class="button-item" cdkDrag>Button</button>
+            <button [attr.data-id]="addedObj.id" class="button-item" cdkDrag>Button</button>
         </ng-container>
         <ng-container *ngSwitchCase="'select'">
-            <select class="select-item" name="select" cdkDrag>
+            <select [attr.data-id]="addedObj.id" class="select-item" name="select" cdkDrag>
                 <option disabled>Select</option>
                 <option>Select 1</option>
                 <option>Select 2</option>
             </select>
         </ng-container>
         <ng-container *ngSwitchCase="'checkbox'">
-            <div cdkDrag>
+            <div cdkDrag [attr.data-id]="addedObj.id">
                 <input class="checkbox-item" type="checkbox" id="checkbox" name="checkbox"
                        checked>
                 <label for="checkbox">Checkbox</label>
             </div>
         </ng-container>
         <ng-container *ngSwitchCase="'textarea'">
-            <textarea placeholder="Textarea" cdkDrag class="textarea-item" name="textarea"></textarea>
+            <textarea [attr.data-id]="addedObj.id" placeholder="Textarea" cdkDrag class="textarea-item" name="textarea"></textarea>
         </ng-container>
     </div>
 </div>

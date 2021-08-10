@@ -10,7 +10,9 @@ export function FormReducer(state= initialState, action: FormsActions){
         case FormsActionTypes.addElement:
             return {...state, [action.payload.id]:{title:action.payload.title}};
         case FormsActionTypes.deleteElement:
-            return {...state}
+            let newState = { ...state };
+            delete newState[action.payload.id];
+            return newState;
         default: return state;
     }
 }

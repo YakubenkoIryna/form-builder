@@ -1,10 +1,10 @@
-export interface User{
+export interface IUser{
     email: string,
     password: string
 }
 export interface IFormElements{
     id?: number;
-    title: 'string'
+    title: string;
 }
 export interface IFormElementStyleState{
     id?:{

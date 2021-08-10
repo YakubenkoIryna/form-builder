@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
-import {User} from "../../interface";
+import {IUser} from "../../interface";
 
 
 @Component({
@@ -28,11 +28,10 @@ export class LoginComponent implements OnInit {
     })
   }
   submit(){
-    console.log(this.form)
     if (this.form.invalid){
       return
     }
-    const user: User = {
+    const user: IUser = {
       email: this.form.value.email,
       password: this.form.value.password
     }
@@ -40,5 +39,4 @@ export class LoginComponent implements OnInit {
     this.form.reset()
 
   }
-
 }

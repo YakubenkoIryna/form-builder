@@ -14,6 +14,7 @@ export class FormBuilderComponent implements OnInit {
 
     addedObjects = [];
     id: number;
+    currentElement;
     elementNew;
 
     constructor( private store$: Store<IFormElementStyleState>) { }
@@ -32,9 +33,10 @@ export class FormBuilderComponent implements OnInit {
                 event.currentIndex);
         } else{
             this.id = new Date().getTime();
-            this.elementNew = event.previousContainer.data[event.previousIndex];
-            this.addedObjects.push(event.previousContainer.data[event.previousIndex]);
-            this.addElements( this.id, this.elementNew.title)
+            this.currentElement = event.previousContainer.data[event.previousIndex];
+            this.elementNew = {...this.currentElement, id: this.id}
+            this.addedObjects.push(this.elementNew);
+            this.addElements( this.id, this.elementNew.title);
         }
     }
 }
