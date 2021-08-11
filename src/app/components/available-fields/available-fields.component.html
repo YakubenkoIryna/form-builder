@@ -1,35 +1,35 @@
 <div class="available-fields__wrapper" cdkDropList
      [cdkDropListData]="objects"
      (cdkDropListDropped)="onDrop($event)">
-    <div *ngFor="let obj of objects"
-         class="available-fields__item"
-         [ngSwitch]="obj.title">
+  <div *ngFor="let obj of objects"
+       class="available-fields__item"
+       [ngSwitch]="obj.title">
 
-        <ng-container *ngSwitchCase="'input'">
-            <div cdkDrag>
-                <label>Input</label>
-                <input class="input-item" type="text" placeholder="Input">
-            </div>
-        </ng-container>
-        <ng-container *ngSwitchCase="'button'">
-            <button class="button-item" cdkDrag>Button</button>
-        </ng-container>
-        <ng-container *ngSwitchCase="'select'">
-            <select class="select-item" name="select" cdkDrag>
-                <option disabled>Select</option>
-                <option>Select 1</option>
-                <option>Select 2</option>
-            </select>
-        </ng-container>
-        <ng-container *ngSwitchCase="'checkbox'">
-            <div cdkDrag>
-                <input class="checkbox-item" type="checkbox" id="checkbox" name="checkbox"
-                       >
-                <label for="checkbox">Checkbox</label>
-            </div>
-        </ng-container>
-        <ng-container *ngSwitchCase="'textarea'">
-            <textarea placeholder="Textarea" cdkDrag class="textarea-item" type="text"></textarea>
-        </ng-container>
-    </div>
+    <ng-container *ngSwitchCase="'input'">
+      <div cdkDrag>
+        <label>Input</label>
+        <input class="input-item" type="text" placeholder="Input">
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'button'">
+      <button class="button-item" cdkDrag>Button</button>
+    </ng-container>
+    <ng-container *ngSwitchCase="'select'">
+      <select class="select-item" name="select" cdkDrag>
+        <option disabled>Select</option>
+        <option>Select 1</option>
+        <option>Select 2</option>
+      </select>
+    </ng-container>
+    <ng-container *ngSwitchCase="'checkbox'">
+      <div cdkDrag>
+        <input class="checkbox-item" type="checkbox" id="checkbox" name="checkbox"
+        >
+        <label for="checkbox">Checkbox</label>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'textarea'">
+      <textarea placeholder="Textarea" rows="10" cols="45" cdkDrag class="textarea-item" type="text"></textarea>
+    </ng-container>
+  </div>
 </div>

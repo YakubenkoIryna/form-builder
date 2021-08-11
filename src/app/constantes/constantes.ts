@@ -1,4 +1,4 @@
-export const CElementsStandartParams = {
+export const CElementsStandardParams = {
     button:{
         title: 'button',
         styles:{
@@ -17,7 +17,7 @@ export const CElementsStandartParams = {
     input:{
         title: 'input',
         styles:{
-            maxWidth: '350px',
+            maxWidth: '425px',
             height: '35px',
             borderStyle: 'solid',
             borderRadius: '10px',
@@ -29,7 +29,7 @@ export const CElementsStandartParams = {
     textarea:{
         title: 'textarea',
         styles:{
-            maxWidth: '350px',
+            maxWidth: '425px',
             height: '120px',
             borderStyle: 'solid',
             borderRadius: '10px',

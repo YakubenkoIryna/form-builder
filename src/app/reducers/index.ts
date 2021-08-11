@@ -1,7 +1,7 @@
 import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 import { FormReducer, formReducerNode } from './forms/forms.reducers';
-import { IFormElementStyleState } from '../interface';
+import { IFormElementStyleState } from '../interfaces/interface';
 
 export interface IState {
     [formReducerNode]: IFormElementStyleState;

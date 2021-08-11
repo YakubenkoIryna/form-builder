@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { IUser } from '../../interface';
+import { IUser } from '../../interfaces/interface';
 
 
 @Component({
@@ -26,19 +26,18 @@ export class LoginComponent implements OnInit {
                 Validators.required,
                 Validators.minLength(6)
             ])
-        })
+        });
     }
 
     submit(): void {
         if (this.form.invalid) {
-            return
+            return;
         }
         const user: IUser = {
             email: this.form.value.email,
             password: this.form.value.password
-        }
-        this.auth.login(user)
-        this.form.reset()
-
+        };
+        this.auth.login(user);
+        this.form.reset();
     }
 }

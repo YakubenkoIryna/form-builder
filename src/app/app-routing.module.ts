@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
-import { HomePageComponent } from './components/home-page/home-page.component'
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 const routes: Routes = [
     {
@@ -11,10 +11,9 @@ const routes: Routes = [
         ]
     },
     {
-        path: 'admin', loadChildren: () => import('./admin.module').then(m => m.AdminModule)
+        path: 'admin', loadChildren: () => import('./modules/admin.module').then(m => m.AdminModule)
     }
 ];
-
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

@@ -1,19 +1,22 @@
-export interface IUser{
-    email: string,
-    password: string
+export interface IUser {
+    email: string;
+    password: string;
 }
-export interface IFormElements{
+
+export interface IFormElements {
     id?: number;
     title: string;
+    styles?: object;
 }
-export interface IFormElementStyleState{
-    id?:{
+
+export interface IFormElementStyleState {
+    id?: {
         title: string;
         placeholder?: string;
         required?: string;
         value?: string;
         label?: string;
-        styles:{
+        styles: {
             width?: string;
             height?: string;
             color?: string;
@@ -22,5 +25,5 @@ export interface IFormElementStyleState{
             fontWeight?: string;
             backgroundColor?: string;
         }
-    }
+    };
 }

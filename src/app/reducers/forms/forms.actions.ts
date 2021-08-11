@@ -8,15 +8,15 @@ export enum FormsActionTypes {
 export class AddElementAction implements Action {
     readonly  type = FormsActionTypes.addElement;
     constructor(
-        public payload: { id: number, title: string }
+        public payload: { id: number, title: string, styles: object }
     ) { }
 }
 export class DeleteElementAction implements Action {
     readonly type = FormsActionTypes.deleteElement;
     constructor(
-        public payload: {id:number}
-    ) { }
+        public payload: { id: number }
+        ) { }
 }
 
-export type FormsActions =  AddElementAction | DeleteElementAction
+export type FormsActions =  AddElementAction | DeleteElementAction;
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {Router} from '@angular/router';
-import {AuthService} from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -13,11 +13,12 @@ export class FormBuilderPageComponent {
     constructor(
         public auth: AuthService,
         private route: Router
-    ) { }
+    ) {
+    }
 
     logout() {
-        this.auth.logout()
-        this.route.navigate(['/login'])
+        this.auth.logout();
+        this.route.navigate(['/login']);
 
     }
 }

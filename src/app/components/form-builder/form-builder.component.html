@@ -1,33 +1,75 @@
 <h1 class="form-builder-header">Form Builder</h1>
 <div class="form-builder" cdkDropList [cdkDropListData]="addedObjects"
      (cdkDropListDropped)="onDrop($event)">
-     <div class="added-objects" *ngFor="let addedObj of addedObjects"
-         [ngSwitch]="addedObj.title">
-        <ng-container *ngSwitchCase="'input'">
-            <div cdkDrag [attr.data-id]="addedObj.id">
-                <label>Input</label>
-                <input class="input-item" type="text" placeholder="Input">
-            </div>
-        </ng-container>
-        <ng-container *ngSwitchCase="'button'">
-            <button [attr.data-id]="addedObj.id" class="button-item" cdkDrag>Button</button>
-        </ng-container>
-        <ng-container *ngSwitchCase="'select'">
-            <select [attr.data-id]="addedObj.id" class="select-item" name="select" cdkDrag>
-                <option disabled>Select</option>
-                <option>Select 1</option>
-                <option>Select 2</option>
-            </select>
-        </ng-container>
-        <ng-container *ngSwitchCase="'checkbox'">
-            <div cdkDrag [attr.data-id]="addedObj.id">
-                <input class="checkbox-item" type="checkbox" id="checkbox" name="checkbox"
-                       checked>
-                <label for="checkbox">Checkbox</label>
-            </div>
-        </ng-container>
-        <ng-container *ngSwitchCase="'textarea'">
-            <textarea [attr.data-id]="addedObj.id" placeholder="Textarea" cdkDrag class="textarea-item" name="textarea"></textarea>
-        </ng-container>
-    </div>
+  <div class="added-objects" *ngFor="let addedObj of addedObjects"
+       [ngSwitch]="addedObj.title">
+
+    <ng-container *ngSwitchCase="'input'">
+      <div class="input-item-wrapper"
+        cdkDrag
+        [attr.data-id]="addedObj.id"
+      >
+        <label>Input</label>
+        <input
+          [style]='elementStyles.input.styles'
+          class="input-item"
+          type="text"
+          placeholder="Input"
+        >
+      </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'button'">
+      <button
+        [attr.data-id]="addedObj.id"
+        [style]='elementStyles.button.styles'
+        class="button-item" cdkDrag>
+        Button
+      </button>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'select'">
+      <select
+        [style]='elementStyles.select.styles'
+        [attr.data-id]="addedObj.id"
+        class="select-item"
+        name="select"
+        cdkDrag
+      >
+        <option disabled>Select</option>
+        <option>Select 1</option>
+        <option>Select 2</option>
+      </select>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'checkbox'">
+      <div class="checkbox-item_wrapper"
+          cdkDrag
+          [attr.data-id]="addedObj.id"
+      >
+        <input
+          [style]='elementStyles.checkbox.styles'
+          class="checkbox-item"
+          type="checkbox"
+          id="checkbox"
+          name="checkbox"
+          checked
+        >
+        <label for="checkbox">Checkbox</label>
+      </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'textarea'">
+       <textarea
+          [style]='elementStyles.textarea.styles'
+          [attr.data-id]="addedObj.id"
+          placeholder="Textarea"
+          cdkDrag
+          class="textarea-item"
+          rows="10" cols="45"
+          type="text"
+          name="textarea">
+       </textarea>
+    </ng-container>
+  </div>
 </div>

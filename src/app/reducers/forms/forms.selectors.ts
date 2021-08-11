@@ -1,4 +1,4 @@
-import { IFormElementStyleState } from "../../interface";
+import { IFormElementStyleState } from "../../interfaces/interface";
 
 
 export interface AppState{
