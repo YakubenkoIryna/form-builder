@@ -1,28 +1,31 @@
+@import "src/app/scss/variables";
+
 .login-wrapper{
   display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: #bfe3dc;
+  background-color: $mainColor;
   align-items: center;
   justify-content: center;
 }
 .form-login{
-  max-width: 300px;
+  border: $borderStyle;
+  max-width: 400px;
   align-self: center;
-  border: 1px grey solid;
   padding: 15px;
   border-radius: 10px;
-  background-color: white;
+  background-color: $white;
 }
 .form-input{
   border-radius: 5px;
+  width: 320px;
 }
 .error-validation{
-  color: red;
+  color: $errorColor;
 }
 .btn-submit{
+  border: $borderStyle;
   margin: 5px;
-  border: 1px solid grey;
   border-radius: 5px;
 }
 .btn-submit:hover{

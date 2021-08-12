@@ -1,3 +1,5 @@
+@import "src/app/scss/variables";
+
 .accordion{
   height: 100%;
   display: block;
@@ -6,11 +8,11 @@
 .accordion-header{
   text-align: center;
   font-size: 30px;
-  border-bottom: 1px solid grey;
+  border-bottom: $borderStyle;
 }
 .accordion-item {
+  border: $borderStyle;
   display: block;
-  border: solid 1px #ccc;
 }
 .accordion-item-header {
   display: flex;
@@ -39,9 +41,9 @@
 .btn-edit-style{
   width: 40px;
   height: 17px;
-  border-radius: 6px;
+  border-radius: 8px;
   text-align: center;
   font-size: 10px;
   border: 1px solid lightgray;
-  background: #f7f7f7;
+  background: $editButtonColor;
 }

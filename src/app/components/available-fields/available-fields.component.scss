@@ -1,3 +1,5 @@
+@import "src/app/scss/variables";
+
 .available-fields__wrapper{
   margin: 60px 30px;
 }
@@ -5,43 +7,35 @@
   margin: 12px;
 }
 .button-item{
+  @include elementBorder;
+  @include elementFont;
   width: 90px;
   height: 30px;
-  border-style: solid;
-  background-color: #808080;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: normal;
+  background-color: $grey;
   text-align: center;
   cursor: pointer;
-  color: white;
+  color: $white;
 }
 .input-item{
+  @include elementBorder;
+  @include elementFont;
   max-width: 350px;
   height: 35px;
-  border-style: solid;
-  color: grey;
-  font-size: 15px;
-  font-weight: normal;
-  border-radius: 10px;
+  color: $grey;
 }
 .textarea-item{
-  border-radius: 10px;
+  @include elementBorder;
+  @include elementFont;
   max-width: 350px;
   height: 120px;
-  border-style: solid;
-  font-size: 18px;
-  font-weight: bold;
-  color: grey;
+  color: $grey;
 }
 .select-item{
+  @include elementBorder;
+  @include elementFont;
   width: 120px;
   height: 35px;
-  border-style: solid;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: bold;
-  color: grey;
+  color: $grey;
 }
 .checkbox-item{
   width: 16px;

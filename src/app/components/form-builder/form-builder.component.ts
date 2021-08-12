@@ -36,6 +36,7 @@ export class FormBuilderComponent {
             this.id = new Date().getTime();
             this.currentElement = event.previousContainer.data[event.previousIndex];
             this.style = this.elementStyles[this.currentElement.title];
+            console.log('style', this.style)
             this.elementNew = { ...this.currentElement, id: this.id, styles: this.style.styles };
             this.addedObjects.push(this.elementNew);
             this.addElements(this.id, this.elementNew.title, this.elementNew.styles);
