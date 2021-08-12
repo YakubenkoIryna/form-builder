@@ -19,6 +19,18 @@
     <div class="login-control">
       <label for="password">Password</label>
       <input class="form-input" id="password" type="password" formControlName="password">
+      <div
+          *ngIf="form.get('password').invalid && form.get('password').updateOn && form.get('password').dirty "
+          class="validation">
+      <small class="error-validation"
+             *ngIf="form.get('password')?.errors?.pattern">
+        Special charecters /+!#@$^&*()-?|.,;:\ are not allowed!
+      </small>
+      <small class="error-validation"
+             *ngIf="form.get('password').errors && form.get('password').invalid">
+        Password must contain at least 6 symbols!
+      </small>
+      </div>
     </div>
     <button
         type="submit"
