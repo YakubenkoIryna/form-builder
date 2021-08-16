@@ -1,6 +1,9 @@
 To use app:
+
     1. clone this project.
+    
     2. clone server from https://github.com/YakubenkoIryna/simple_server.
+   
     3. use email: 'form@gmai.com', password: '123456' to login.
 
 
