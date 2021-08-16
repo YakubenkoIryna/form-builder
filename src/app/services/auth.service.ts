@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { IUser } from '../interfaces/interface';
 import { throwError } from 'rxjs';
+import { RequestService } from './request.service';
 
 
 @Injectable({
@@ -11,17 +12,16 @@ import { throwError } from 'rxjs';
 
 export class AuthService {
 
-    url = 'http://localhost:5000/api';
     token: string;
-    error: HttpErrorResponse;
 
     constructor(
-        private http: HttpClient,
+        private loginUserService: RequestService,
         public router: Router
-    ) { }
+    ) {
+    }
 
     login(user: IUser) {
-        this.http.post(this.url + '/authenticate', user)
+        this.loginUserService.loginUser(user)
             .subscribe((res: any) => {
                 if (res.token) {
                     localStorage.setItem('ourToken', res.token);
