@@ -1,60 +1,60 @@
 export const CElementsStandardParams = {
-    button:{
+    button: {
         title: 'button',
-        styles:{
+        styles: {
             width: '90px',
             height: '30px',
             borderStyle: 'solid',
             borderRadius: '10px',
-            backgroundColor: '#808080',
+            backgroundColor: 'rgb(128, 128, 128)',
             fontSize: '15px',
-            fontWeight:'normal',
+            fontWeight: 'normal',
             textAlign: 'center',
             cursor: 'pointer',
             color: 'white'
         }
     },
-    input:{
+    input: {
         title: 'input',
-        styles:{
+        styles: {
             maxWidth: '425px',
             height: '35px',
             borderStyle: 'solid',
             borderRadius: '10px',
             fontSize: '15px',
-            fontWeight:'normal',
-            color: '#808080',
+            fontWeight: 'normal',
+            color: 'rgb(128, 128, 128)',
         }
     },
-    textarea:{
+    textarea: {
         title: 'textarea',
-        styles:{
+        styles: {
             maxWidth: '425px',
             height: '120px',
             borderStyle: 'solid',
             borderRadius: '10px',
             fontSize: '18px',
-            fontWeight:'bold',
-            color: '#808080',
+            fontWeight: 'bold',
+            color: 'rgb(128, 128, 128)',
         }
     },
-    select:{
+    select: {
         title: 'select',
-        styles:{
+        styles: {
             width: '120px',
             height: '35px',
             borderStyle: 'solid',
             borderRadius: '10px',
             fontSize: '15px',
-            fontWeight:'bold',
-            color: '#808080',
+            fontWeight: 'bold',
+            color: 'rgb(128, 128, 128)',
         }
     },
-    checkbox:{
+    checkbox: {
         title: 'checkbox',
-        styles:{
+        styles: {
             width: '16px',
             height: '13px',
         }
     }
-}
+};

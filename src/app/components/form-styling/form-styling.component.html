@@ -1,0 +1,47 @@
+<h1 class="accordion-header">General Styles</h1>
+<cdk-accordion class="accordion">
+  <cdk-accordion-item
+    *ngFor="let item of items | keyvalue; let index = index;"
+    #accordionItem="cdkAccordionItem"
+    class="accordion-item"
+    role="button"
+    tabindex="0"
+    [attr.id]="'form-styling-header-' + index"
+    [attr.aria-expanded]="accordionItem.expanded"
+    [attr.aria-controls]="'form-styling-body-' + index">
+       <div class="accordion-item-header" (click)="accordionItem.toggle()">
+         <div class="accordion-item-title">
+            {{ item.value.title }}:
+            <span class="item-id"> '{{item.key}}'</span>
+         </div>
+         <span class="accordion-item-description">
+            Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+         </span>
+       </div>
+       <div *ngFor="let itemStyle of item.value.styles | keyvalue;"
+         class="accordion-item-body"
+         role="region"
+         [style.display]="accordionItem.expanded ? '' : 'none'"
+         [attr.id]="'form-styling-body-' + index"
+         [attr.aria-labelledby]="'form-styling-header-' + index">
+         {{ itemStyle.key }}: {{ itemStyle.value }}
+
+         <form *ngIf="stylesList.includes(itemStyle.key)"
+               class="edit-style-form"
+               action="#"
+               (ngSubmit)="onSubmit(item.key, itemStyle.key, value)">
+           <input [(ngModel)]="value" [ngModelOptions]="{standalone: true}" class="input-element-styles" type="text" placeholder="{{ itemStyle.value }}">
+           <button class="btn-edit-ok">Ok</button>
+           <button class="btn-edit-cancel" type="button" (click)="onCancel(itemStyle.key)">Cancel</button>
+         </form>
+         <button
+             *ngIf="!stylesList.includes(itemStyle.key)"
+             (click)="onEdit(itemStyle.key)"
+             class="btn-edit-style">
+             Edit
+         </button>
+
+       </div>
+    </cdk-accordion-item>
+</cdk-accordion>
+

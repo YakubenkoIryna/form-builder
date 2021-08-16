@@ -21,9 +21,14 @@ export interface IFormElementStyleState {
             height?: string;
             color?: string;
             borderStyle?: string;
+            borderRadius?: string;
+            textAlign?: string;
             fontSize?: string;
             fontWeight?: string;
             backgroundColor?: string;
+            maxWidth?: string;
+
+
         }
     };
 }

@@ -3,7 +3,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Store } from '@ngrx/store';
 import { IFormElementStyleState } from '../../interfaces/interface';
 import { AddElementAction } from '../../reducers/forms/forms.actions';
-import { CElementsStandardParams } from '../../constantes/constantes'
+import { CElementsStandardParams } from '../../constantes/constantes';
 
 @Component({
     selector: 'app-form-builder',
@@ -18,7 +18,7 @@ export class FormBuilderComponent {
     currentElement: any;
     elementNew: any;
     elementStyles = CElementsStandardParams;
-    style;
+    style: any;
 
     constructor(private store$: Store<IFormElementStyleState>) { }
 
@@ -36,11 +36,13 @@ export class FormBuilderComponent {
             this.id = new Date().getTime();
             this.currentElement = event.previousContainer.data[event.previousIndex];
             this.style = this.elementStyles[this.currentElement.title];
-            console.log('style', this.style)
             this.elementNew = { ...this.currentElement, id: this.id, styles: this.style.styles };
             this.addedObjects.push(this.elementNew);
             this.addElements(this.id, this.elementNew.title, this.elementNew.styles);
 
         }
     }
+
+
+
 }

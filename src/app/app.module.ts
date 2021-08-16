@@ -12,8 +12,8 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { MainLayoutComponent } from './components/main-layout/main-layout.component';
-import { HomePageComponent } from './components/home-page/home-page.component';
+import { MainLayoutComponent } from './components/layout/main-layout/main-layout.component';
+import { HomePageComponent } from './components/pages/home-page/home-page.component';
 
 
 

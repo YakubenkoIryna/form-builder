@@ -8,14 +8,14 @@ import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { StoreModule } from '@ngrx/store';
 
 import { LoginComponent } from '../components/login/login.component';
-import { AdminLayoutComponent } from '../components/admin-layout/admin-layout.component';
+import { AdminLayoutComponent } from '../components/layout/admin-layout/admin-layout.component';
 import { AuthService } from '../services/auth.service';
-import { FormBuilderPageComponent } from '../components/form-builder-page/form-builder-page.component';
-import { AccordionComponent } from '../components/accordion/accordion.component';
+import { FormBuilderPageComponent } from '../components/pages/form-builder-page/form-builder-page.component';
+import { FormStylingComponent } from '../components/form-styling/form-styling.component';
 import { FormBuilderComponent } from '../components/form-builder/form-builder.component';
 import { AvailableFieldsComponent } from '../components/available-fields/available-fields.component';
 import { AuthGuard } from '../auth/guard/auth.guard';
-import { HomePageComponent } from '../components/home-page/home-page.component';
+import { HomePageComponent } from '../components/pages/home-page/home-page.component';
 import { FormReducer } from '../reducers/forms/forms.reducers';
 
 
@@ -24,7 +24,7 @@ import { FormReducer } from '../reducers/forms/forms.reducers';
     LoginComponent,
     AdminLayoutComponent,
     FormBuilderPageComponent,
-    AccordionComponent,
+    FormStylingComponent,
     FormBuilderComponent,
     AvailableFieldsComponent,
   ],

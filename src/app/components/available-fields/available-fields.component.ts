@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 import { DeleteElementAction } from '../../reducers/forms/forms.actions';
 import { Store } from '@ngrx/store';
 import { IFormElements, IFormElementStyleState } from '../../interfaces/interface';
+import { RequestService } from '../../services/request.service';
 
 
 @Component({
@@ -17,12 +17,13 @@ export class AvailableFieldsComponent implements OnInit {
     id: any;
 
     constructor(
-        private http: HttpClient,
+        private requestService: RequestService,
         private store$: Store<IFormElementStyleState>
-    ) { }
+    ) {
+    }
 
     ngOnInit(): void {
-        this.http.get<IFormElements[]>('http://localhost:3000/components')
+        this.requestService.getObjects()
             .subscribe(objects => {
                 this.objects = objects;
             });
