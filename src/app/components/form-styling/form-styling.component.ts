@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getFormBuilderState, IState } from '../../reducers';
+import { getFormsState, IState } from '../../reducers';
 import { FormGroup } from '@angular/forms';
 import { EditElementStylesAction } from '../../reducers/forms/forms.actions';
 
@@ -17,7 +17,7 @@ export class FormStylingComponent implements OnInit {
     formStyle: FormGroup;
     value = '';
 
-    public state = this.store$.select(getFormBuilderState);
+    public state = this.store$.select(getFormsState);
 
     constructor(private store$: Store<IState>) {
     }
@@ -29,16 +29,18 @@ export class FormStylingComponent implements OnInit {
     getItems(): void {
         this.state.subscribe(data => this.items = data);
     }
-    onCancel(character: string): void{
-        this.stylesList = this.stylesList.filter( elem => elem !== character);
-    }
-    onEdit(character: string): void{
-        this.stylesList.push(character);
-    }
-    onSubmit(id: number, character: string, value: string): void{
-        this.store$.dispatch( new EditElementStylesAction({ id, character, value }));
-        this.stylesList = this.stylesList.filter( elem => elem !== character);
-        this.value = '';
+
+    onCancel(character: string): void {
+        this.stylesList = this.stylesList.filter(elem => elem !== character);
     }
 
+    onEdit(character: string): void {
+        this.stylesList.push(character);
+    }
+
+    onSubmit(id: number, character: string, value: string): void {
+        this.store$.dispatch(new EditElementStylesAction({ id, character, value }));
+        this.stylesList = this.stylesList.filter(elem => elem !== character);
+        this.value = '';
+    }
 }

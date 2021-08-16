@@ -1,7 +1,3 @@
-import { IFormElementStyleState } from "../../interfaces/interface";
+import { IFormElementStyleState } from '../../interfaces/interface';
 
-
-export interface AppState{
-    feature: IFormElementStyleState;
-}
-export const getFormElements = (state: AppState): IFormElementStyleState => state.feature;
+export const selectFormElements = (state: IFormElementStyleState): any => state;

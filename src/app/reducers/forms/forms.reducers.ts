@@ -4,8 +4,7 @@ import { IFormElementStyleState } from '../../interfaces/interface';
 
 export const formReducerNode = 'form-reducer';
 
-export const initialState: IFormElementStyleState = {
-};
+export const initialState: IFormElementStyleState = { };
 
 export function FormReducer(state = initialState, action: FormsActions) {
     switch (action.type) {
@@ -18,13 +17,14 @@ export function FormReducer(state = initialState, action: FormsActions) {
             delete newState[action.payload.id];
             return newState;
         case FormsActionTypes.editElementStyles:
+
             return { ...state,
                 [action.payload.id]: {
                     ...state[action.payload.id],
                     styles: {
                         ...state[action.payload.id].styles,
                         [action.payload.character]:
-                            (action.payload.character !== 'options')
+                            (action.payload.character !== ' ')
                                 ? action.payload.value
                                 : action.payload.value.split('-')}
                     }

@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Store } from '@ngrx/store';
-import { IFormElementStyleState } from '../../interfaces/interface';
 import { AddElementAction } from '../../reducers/forms/forms.actions';
 import { CElementsStandardParams } from '../../constantes/constantes';
+import { getFormsState, IState } from '../../reducers';
+import { Observable } from "rxjs";
+
 
 @Component({
     selector: 'app-form-builder',
@@ -19,8 +21,12 @@ export class FormBuilderComponent {
     elementNew: any;
     elementStyles = CElementsStandardParams;
     style: any;
+    updatedElement;
 
-    constructor(private store$: Store<IFormElementStyleState>) { }
+    public state = this.store$.select(getFormsState);
+
+    constructor(private store$: Store<IState>) {
+    }
 
     addElements(id: number, title: string, styles: object): void {
         this.store$.dispatch(new AddElementAction({ id, title, styles}));
@@ -42,7 +48,10 @@ export class FormBuilderComponent {
 
         }
     }
+    getStyledElement(): Observable<any>{
+        this.state.subscribe(data => this.updatedElement = data);
+        return this.updatedElement;
 
-
+    }
 
 }
