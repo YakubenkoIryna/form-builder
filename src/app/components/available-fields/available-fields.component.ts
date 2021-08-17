@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
-import { DeleteElementAction } from '../../reducers/forms/forms.actions';
 import { Store } from '@ngrx/store';
-import { IFormElements, IFormElementStyleState } from '../../interfaces/interface';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
 import { RequestService } from '../../services/request.service';
+import { IFormElements, IFormElementStyleState } from '../../interfaces/interface';
+import { DeleteElementAction } from '../../reducers/forms/forms.actions';
 
 
 @Component({
@@ -11,10 +14,11 @@ import { RequestService } from '../../services/request.service';
     templateUrl: './available-fields.component.html',
     styleUrls: ['./available-fields.component.scss']
 })
-export class AvailableFieldsComponent implements OnInit {
+export class AvailableFieldsComponent implements OnInit, OnDestroy {
 
     objects: IFormElements[] = [];
     id: any;
+    public ngUnsubscribe$ = new Subject<void>();
 
     constructor(
         private requestService: RequestService,
@@ -24,6 +28,7 @@ export class AvailableFieldsComponent implements OnInit {
 
     ngOnInit(): void {
         this.requestService.getObjects()
+            .pipe(takeUntil(this.ngUnsubscribe$))
             .subscribe(objects => {
                 this.objects = objects;
             });
@@ -44,4 +49,10 @@ export class AvailableFieldsComponent implements OnInit {
     deleteElements(id: number): void {
         this.store$.dispatch(new DeleteElementAction({ id }));
     }
+
+    ngOnDestroy(): void {
+        this.ngUnsubscribe$.next();
+        this.ngUnsubscribe$.complete();
+    }
+
 }

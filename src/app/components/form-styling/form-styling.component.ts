@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { getFormsState, IState } from '../../reducers';
 import { FormGroup } from '@angular/forms';
 import { EditElementStylesAction } from '../../reducers/forms/forms.actions';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -10,12 +12,13 @@ import { EditElementStylesAction } from '../../reducers/forms/forms.actions';
     templateUrl: './form-styling.component.html',
     styleUrls: ['./form-styling.component.scss']
 })
-export class FormStylingComponent implements OnInit {
+export class FormStylingComponent implements OnInit, OnDestroy {
 
     items = {};
     stylesList = [];
     formStyle: FormGroup;
     value = '';
+    public ngUnsubscribe$ = new Subject<void>();
 
     public state = this.store$.select(getFormsState);
 
@@ -27,7 +30,9 @@ export class FormStylingComponent implements OnInit {
     }
 
     getItems(): void {
-        this.state.subscribe(data => this.items = data);
+        this.state
+            .pipe(takeUntil(this.ngUnsubscribe$))
+            .subscribe(data => this.items = data);
     }
 
     onCancel(character: string): void {
@@ -42,5 +47,10 @@ export class FormStylingComponent implements OnInit {
         this.store$.dispatch(new EditElementStylesAction({ id, character, value }));
         this.stylesList = this.stylesList.filter(elem => elem !== character);
         this.value = '';
+    }
+
+    ngOnDestroy() {
+        this.ngUnsubscribe$.next();
+        this.ngUnsubscribe$.complete();
     }
 }

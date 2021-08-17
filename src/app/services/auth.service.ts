@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { IUser } from '../interfaces/interface';
-import { throwError } from 'rxjs';
+import { Subject, throwError } from 'rxjs';
 import { RequestService } from './request.service';
+import { takeUntil } from "rxjs/operators";
 
 
 @Injectable({
@@ -13,6 +13,7 @@ import { RequestService } from './request.service';
 export class AuthService {
 
     token: string;
+    public ngUnsubscribe$ = new Subject<void>();
 
     constructor(
         private loginUserService: RequestService,
@@ -22,10 +23,11 @@ export class AuthService {
 
     login(user: IUser) {
         this.loginUserService.loginUser(user)
+            .pipe(takeUntil(this.ngUnsubscribe$))
             .subscribe((res: any) => {
                 if (res.token) {
                     localStorage.setItem('ourToken', res.token);
-                    this.router.navigate(['/form-builder']);
+                    this.router.navigate(['/form-builder']).then(res)
                 }
             });
     }
@@ -38,10 +40,8 @@ export class AuthService {
         return (localStorage.getItem('ourToken') !== null);
     }
 
-    public handleError(error: HttpErrorResponse) {
-        if (error.error.errorMessage) {
-            window.alert('You do not have a permission!');
-        }
-        return throwError(error);
+    ngOnDestroy(): void {
+        this.ngUnsubscribe$.next();
+        this.ngUnsubscribe$.complete();
     }
 }
