@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MainLayoutComponent } from './components/layout/main-layout/main-layout.component';
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
+import { AuthEffects } from './reducers/auth/auth.effects';
 
 @NgModule({
     declarations: [
@@ -26,12 +27,11 @@ import { HomePageComponent } from './components/pages/home-page/home-page.compon
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        StoreModule.forRoot({}, {}),
         StoreModule.forRoot(reducers, {
             metaReducers
         }),
         StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-        EffectsModule.forRoot([]),
+        EffectsModule.forRoot([AuthEffects]),
         AdminModule,
         StoreRouterConnectingModule.forRoot()
     ],

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser } from '../interfaces/interface';
-import { Subject, throwError } from 'rxjs';
+import { Subject } from 'rxjs';
 import { RequestService } from './request.service';
 import { takeUntil } from "rxjs/operators";
 
@@ -36,7 +36,7 @@ export class AuthService {
         localStorage.removeItem('ourToken');
     }
 
-    public get logIn(): boolean {
+    public get logIn(): boolean | any {
         return (localStorage.getItem('ourToken') !== null);
     }
 

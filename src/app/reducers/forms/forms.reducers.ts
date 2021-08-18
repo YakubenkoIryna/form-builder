@@ -1,10 +1,10 @@
 import { FormsActions, FormsActionTypes } from './forms.actions';
 import { IFormElementStyleState } from '../../interfaces/interface';
 
-
 export const formReducerNode = 'form-reducer';
 
 export const initialState: IFormElementStyleState = { };
+
 
 export function FormReducer(state = initialState, action: FormsActions) {
     switch (action.type) {
