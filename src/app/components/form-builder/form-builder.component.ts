@@ -14,7 +14,7 @@ import { takeUntil } from "rxjs/operators";
     styleUrls: ['./form-builder.component.scss']
 })
 
-export class FormBuilderComponent implements OnInit, OnChanges{
+export class FormBuilderComponent implements OnInit {
 
     addedObjects = [];
     id: number;
@@ -46,21 +46,14 @@ export class FormBuilderComponent implements OnInit, OnChanges{
             this.elementNew = { ...this.currentElement, id: this.id, styles: this.style.styles };
             this.addedObjects.push(this.elementNew);
             this.addElements(this.id, this.elementNew.title, this.elementNew.styles);
-
         }
-
     }
     ngOnInit(): void {
-        this.getItems();
-    }
-
-    getItems(): void {
         this.state.subscribe(data => this.updatedStyles = data);
+        console.log(this.updatedStyles)
     }
-    ngOnChanges(){
-        this.elementStyles = this.updatedStyles
-        console.log('el', this.elementStyles)
 
-    }
+
+
 
 }

@@ -60,14 +60,16 @@
 
     <ng-container *ngSwitchCase="'textarea'">
        <textarea
-          [style]='elementStyles.textarea.styles'
           [attr.data-id]="addedObj.id"
+          [style]='elementStyles.textarea.styles'
           placeholder="Textarea"
           cdkDrag
           class="textarea-item"
-          rows="10" cols="45"
+          rows="10"
+          cols="45"
           type="text"
-          name="textarea">
+          name="textarea"
+       >
        </textarea>
     </ng-container>
   </div>
