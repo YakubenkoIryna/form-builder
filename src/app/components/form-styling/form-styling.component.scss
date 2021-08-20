@@ -1,4 +1,4 @@
-@import "src/app/scss/variables";
+@import 'src/app/scss/variables';
 
 .accordion {
   height: 100%;
@@ -13,7 +13,7 @@
 }
 
 .accordion-item {
-  border: $borderStyle;
+  border-bottom: $borderStyle;
   display: block;
 }
 

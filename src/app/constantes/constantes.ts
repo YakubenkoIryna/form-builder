@@ -11,7 +11,8 @@ export const CElementsStandardParams = {
             fontWeight: 'normal',
             textAlign: 'center',
             cursor: 'pointer',
-            color: 'white'
+            color: 'rgb(255,255,255)',
+            title: 'Button'
         }
     },
     input: {
@@ -24,6 +25,7 @@ export const CElementsStandardParams = {
             fontSize: '15px',
             fontWeight: 'normal',
             color: 'rgb(128, 128, 128)',
+            label:'Input'
         }
     },
     textarea: {

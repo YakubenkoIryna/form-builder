@@ -11,6 +11,7 @@
            cdkDrag
            [attr.data-id]="updatedEl.key"
       >
+        <label>{{updatedEl.value.styles.label}}</label>
         <input
             [ngStyle]="updatedEl.value.styles"
             class="input-item"
@@ -25,7 +26,7 @@
           [attr.data-id]="updatedEl.key"
           [ngStyle]='updatedEl.value.styles'
           class="button-item" cdkDrag>
-        Button
+        {{updatedEl.value.styles.title}}
       </button>
     </ng-container>
 
