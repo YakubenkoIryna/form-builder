@@ -3,6 +3,11 @@ export interface IUser {
     password: string;
 }
 
+export interface IError {
+    code: number;
+    message: string;
+}
+
 export interface IFormElements {
     id?: number;
     title: string;

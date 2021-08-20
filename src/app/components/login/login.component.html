@@ -22,14 +22,14 @@
       <div
           *ngIf="form.get('password').invalid && form.get('password').updateOn && form.get('password').dirty "
           class="validation">
-      <small class="error-validation"
-             *ngIf="form.get('password')?.errors?.pattern">
-        Special charecters /+!#@$^&*()-?|.,;:\ are not allowed!
-      </small>
-      <small class="error-validation"
-             *ngIf="form.get('password').errors && form.get('password').invalid">
-        Password must contain at least 6 symbols!
-      </small>
+        <small class="error-validation"
+               *ngIf="form.get('password')?.errors?.pattern">
+          Special charecters /+!#@$^&*()-?|.,;:\ are not allowed!
+        </small>
+        <small class="error-validation"
+               *ngIf="form.get('password').errors && form.get('password').invalid">
+          Password must contain at least 6 symbols!
+        </small>
       </div>
     </div>
     <button

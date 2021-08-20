@@ -1,16 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { of, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
 import { IUser } from '../interfaces/interface';
-import { Subject, throwError } from 'rxjs';
 import { RequestService } from './request.service';
-import { takeUntil } from "rxjs/operators";
 
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class AuthService {
+export class AuthService implements OnDestroy {
 
     token: string;
     public ngUnsubscribe$ = new Subject<void>();
@@ -21,23 +22,23 @@ export class AuthService {
     ) {
     }
 
-    login(user: IUser) {
+    login(user: IUser): void {
         this.loginUserService.loginUser(user)
             .pipe(takeUntil(this.ngUnsubscribe$))
             .subscribe((res: any) => {
                 if (res.token) {
                     localStorage.setItem('ourToken', res.token);
-                    this.router.navigate(['/form-builder']).then(res)
+                    this.router.navigate(['/form-builder']).then(res);
                 }
             });
     }
 
-    logout() {
+    logout(): void {
         localStorage.removeItem('ourToken');
     }
 
-    public get logIn(): boolean {
-        return (localStorage.getItem('ourToken') !== null);
+    logIn(): boolean | any {
+        return of((localStorage.getItem('ourToken') !== null));
     }
 
     ngOnDestroy(): void {

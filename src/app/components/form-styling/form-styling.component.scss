@@ -1,19 +1,22 @@
 @import "src/app/scss/variables";
 
-.accordion{
+.accordion {
   height: 100%;
   display: block;
   max-width: 500px;
 }
-.accordion-header{
+
+.accordion-header {
   text-align: center;
   font-size: 30px;
   border-bottom: $borderStyle;
 }
+
 .accordion-item {
   border: $borderStyle;
   display: block;
 }
+
 .accordion-item-header {
   display: flex;
   align-content: center;
@@ -31,16 +34,18 @@
   padding: 5px 0 5px 15px;
   font-size: 15px;
 }
-.accordion-item-header{
+
+.accordion-item-header {
   text-transform: capitalize;
 }
 
 .accordion-item-header:hover {
   cursor: pointer;
 }
+
 .btn-edit-style,
 .btn-edit-ok,
-.btn-edit-cancel{
+.btn-edit-cancel {
   width: 40px;
   height: 17px;
   border-radius: 2px;
@@ -49,7 +54,8 @@
   border: 1px solid lightgray;
   background: $editButtonColor;
 }
-.input-element-styles{
+
+.input-element-styles {
   width: 110px;
   height: 16px;
   margin: 3px;
@@ -59,10 +65,12 @@
   padding: 0;
   text-align: center;
 }
-.edit-style-form{
+
+.edit-style-form {
   display: inline;
 }
-.item-id{
+
+.item-id {
   font-weight: bold;
   font-size: 10px;
   align-self: center;

@@ -1,6 +1,6 @@
 @import "src/app/scss/variables";
 
-.login-wrapper{
+.login-wrapper {
   display: flex;
   width: 100vw;
   height: 100vh;
@@ -8,7 +8,8 @@
   align-items: center;
   justify-content: center;
 }
-.form-login{
+
+.form-login {
   border: $borderStyle;
   max-width: 400px;
   align-self: center;
@@ -16,19 +17,23 @@
   border-radius: 10px;
   background-color: $white;
 }
-.form-input{
+
+.form-input {
   border-radius: 5px;
   width: 320px;
 }
-.error-validation{
+
+.error-validation {
   color: $errorColor;
 }
-.btn-submit{
+
+.btn-submit {
   border: $borderStyle;
   margin: 5px;
   border-radius: 5px;
 }
-.btn-submit:hover{
+
+.btn-submit:hover {
   border: 1px solid black;
   color: black;
 }
