@@ -10,14 +10,10 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class FormBuilderPageComponent {
 
-    constructor(
-        public auth: AuthService,
-        private route: Router
-    ) {
-    }
+    constructor(public auth: AuthService, private route: Router) { }
 
     logout() {
         this.auth.logout();
-        this.route.navigate(['/login']).then();
+        this.route.navigate(['/']).then();
     }
 }

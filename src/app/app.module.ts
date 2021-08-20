@@ -36,7 +36,7 @@ import { AuthEffects } from './reducers/auth/auth.effects';
         StoreRouterConnectingModule.forRoot()
     ],
     providers: [],
-    exports: [ MainLayoutComponent ],
+    exports: [MainLayoutComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {

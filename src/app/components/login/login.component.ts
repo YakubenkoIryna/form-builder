@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+
 import { AuthService } from '../../services/auth.service';
 import { IUser } from '../../interfaces/interface';
-import { LoginAction } from "../../reducers/auth/auth.actions";
-
+import { LoginAction } from '../../reducers/auth/auth.actions';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
     form: FormGroup;
 
-    constructor(private store: Store , public auth: AuthService) {
+    constructor(private store: Store, public auth: AuthService) {
     }
 
     ngOnInit(): void {
@@ -44,6 +44,6 @@ export class LoginComponent implements OnInit {
         };
         this.auth.login(user);
         this.form.reset();
-        this.store.dispatch( new LoginAction({user}) )
+        this.store.dispatch(new LoginAction({ user }));
     }
 }

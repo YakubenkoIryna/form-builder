@@ -7,7 +7,6 @@ import { Subject } from 'rxjs';
 import { RequestService } from '../../services/request.service';
 import { IFormElements, IFormElementStyleState } from '../../interfaces/interface';
 import { DeleteElementAction } from '../../reducers/forms/forms.actions';
-import { CElementsStandardParams } from "../../constantes/constantes";
 
 
 @Component({

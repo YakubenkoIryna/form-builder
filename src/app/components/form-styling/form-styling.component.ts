@@ -1,12 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { getFormsState, IState } from '../../reducers';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { EditElementStylesAction } from '../../reducers/forms/forms.actions';
+import { Store } from '@ngrx/store';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
+import { getFormsState, IState } from '../../reducers';
+import { EditElementStylesAction } from '../../reducers/forms/forms.actions';
 
+
+@Input('ngModel')
 @Component({
     selector: 'app-form-styling',
     templateUrl: './form-styling.component.html',
@@ -19,10 +21,11 @@ export class FormStylingComponent implements OnInit, OnDestroy {
     formStyle: FormGroup;
     value = '';
     public ngUnsubscribe$ = new Subject<void>();
-
     public state = this.store$.select(getFormsState);
 
-    constructor(private store$: Store<IState>) {
+    constructor(
+        private store$: Store<IState>
+    ) {
     }
 
     ngOnInit(): void {
@@ -49,16 +52,8 @@ export class FormStylingComponent implements OnInit, OnDestroy {
         this.value = '';
     }
 
-
-
-
-
-
-
-
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this.ngUnsubscribe$.next();
         this.ngUnsubscribe$.complete();
     }
-
 }

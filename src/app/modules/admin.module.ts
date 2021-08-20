@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { StoreModule } from '@ngrx/store';
@@ -17,37 +17,42 @@ import { AvailableFieldsComponent } from '../components/available-fields/availab
 import { AuthGuard } from '../auth/guard/auth.guard';
 import { HomePageComponent } from '../components/pages/home-page/home-page.component';
 import { FormReducer } from '../reducers/forms/forms.reducers';
+import { AuthInterceptor } from '../auth/interceptor/auth.interceptor';
 
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    AdminLayoutComponent,
-    FormBuilderPageComponent,
-    FormStylingComponent,
-    FormBuilderComponent,
-    AvailableFieldsComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    CommonModule,
-    DragDropModule,
-    CdkAccordionModule,
-    StoreModule.forRoot({ formsB : FormReducer}),
-    RouterModule.forChild([
-      {
-        path: '', component: AdminLayoutComponent, children: [
-          {path: '', component: HomePageComponent},
-          {path: 'login', component: LoginComponent},
-          {path: 'form-builder', component: FormBuilderPageComponent, canActivate: [AuthGuard]}
-        ]
-      }
-    ]),
-  ],
-  exports: [RouterModule, LoginComponent],
-  providers: [AuthService, AuthGuard]
+    declarations: [
+        LoginComponent,
+        AdminLayoutComponent,
+        FormBuilderPageComponent,
+        FormStylingComponent,
+        FormBuilderComponent,
+        AvailableFieldsComponent,
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        CommonModule,
+        DragDropModule,
+        CdkAccordionModule,
+        StoreModule.forRoot({ formsB: FormReducer }),
+        RouterModule.forChild([
+            {
+                path: '', component: AdminLayoutComponent, children: [
+                    { path: '', component: HomePageComponent },
+                    { path: 'login', component: LoginComponent },
+                    { path: 'form-builder', component: FormBuilderPageComponent, canActivate: [AuthGuard] }
+                ]
+            }
+        ]),
+    ],
+    exports: [RouterModule, LoginComponent],
+    providers: [
+        {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor,  multi: true,},
+        AuthService,
+        AuthGuard]
 })
-export class AdminModule{ }
+export class AdminModule {
+}

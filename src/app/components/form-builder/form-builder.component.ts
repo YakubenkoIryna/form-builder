@@ -1,11 +1,12 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Store } from '@ngrx/store';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
 import { AddElementAction } from '../../reducers/forms/forms.actions';
 import { CElementsStandardParams } from '../../constantes/constantes';
 import { getFormsState, IState } from '../../reducers';
-import { Observable } from 'rxjs';
-import { takeUntil } from "rxjs/operators";
 
 
 @Component({
@@ -14,23 +15,24 @@ import { takeUntil } from "rxjs/operators";
     styleUrls: ['./form-builder.component.scss']
 })
 
-export class FormBuilderComponent implements OnInit {
+export class FormBuilderComponent implements OnInit, OnDestroy {
 
     addedObjects = [];
     id: number;
-    currentElement: any;
-    elementNew: any;
+    currentElement: object | any;
+    elementNew: object | any;
     elementStyles: any = CElementsStandardParams;
-    style: any;
-    updatedStyles: {};
+    style: object | any;
+    updatedElements: {};
+    public ngUnsubscribe$ = new Subject<void>();
 
-    public state = this.store$.select(getFormsState);
-
-    constructor(private store$: Store<IState>) {
+    constructor(
+        private store$: Store<IState>,
+    ) {
     }
 
     addElements(id: number, title: string, styles: object): void {
-        this.store$.dispatch(new AddElementAction({ id, title, styles}));
+        this.store$.dispatch(new AddElementAction({ id, title, styles }));
     }
 
     onDrop(event: CdkDragDrop<string[]>): void {
@@ -48,12 +50,18 @@ export class FormBuilderComponent implements OnInit {
             this.addElements(this.id, this.elementNew.title, this.elementNew.styles);
         }
     }
+
     ngOnInit(): void {
-        this.state.subscribe(data => this.updatedStyles = data);
-        console.log(this.updatedStyles)
+        const state = this.store$.select(getFormsState);
+        state
+            .pipe(takeUntil(this.ngUnsubscribe$))
+            .subscribe(data => {
+                this.updatedElements = data;
+            });
     }
 
-
-
-
+    ngOnDestroy(): void {
+        this.ngUnsubscribe$.next();
+        this.ngUnsubscribe$.complete();
+    }
 }

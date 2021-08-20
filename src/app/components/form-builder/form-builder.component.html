@@ -1,40 +1,41 @@
 <h1 class="form-builder-header">Form Builder</h1>
 <div class="form-builder" cdkDropList [cdkDropListData]="addedObjects"
      (cdkDropListDropped)="onDrop($event)">
-  <div class="added-objects" *ngFor="let addedObj of addedObjects"
-       [ngSwitch]="addedObj.title">
-
+  <div
+      class="added-objects"
+      *ngFor="let updatedEl of updatedElements | keyvalue"
+      [ngSwitch]="updatedEl.value.title"
+  >
     <ng-container *ngSwitchCase="'input'">
       <div class="input-item-wrapper"
-        cdkDrag
-        [attr.data-id]="addedObj.id"
+           cdkDrag
+           [attr.data-id]="updatedEl.key"
       >
-        <label>Input</label>
         <input
-          [style]='elementStyles.input.styles'
-          class="input-item"
-          type="text"
-          placeholder="Input"
+            [ngStyle]="updatedEl.value.styles"
+            class="input-item"
+            type="text"
+            placeholder="Input"
         >
       </div>
     </ng-container>
 
     <ng-container *ngSwitchCase="'button'">
       <button
-        [attr.data-id]="addedObj.id"
-        [style]='elementStyles.button.styles'
-        class="button-item" cdkDrag>
+          [attr.data-id]="updatedEl.key"
+          [ngStyle]='updatedEl.value.styles'
+          class="button-item" cdkDrag>
         Button
       </button>
     </ng-container>
 
     <ng-container *ngSwitchCase="'select'">
       <select
-        [style]='elementStyles.select.styles'
-        [attr.data-id]="addedObj.id"
-        class="select-item"
-        name="select"
-        cdkDrag
+          [ngStyle]='updatedEl.value.styles'
+          [attr.data-id]="updatedEl.key"
+          class="select-item"
+          name="select"
+          cdkDrag
       >
         <option disabled>Select</option>
         <option>Select 1</option>
@@ -44,15 +45,15 @@
 
     <ng-container *ngSwitchCase="'checkbox'">
       <div class="checkbox-item_wrapper"
-          cdkDrag
-          [attr.data-id]="addedObj.id"
+           cdkDrag
+           [attr.data-id]="updatedEl.key"
       >
         <input
-          [style]='elementStyles.checkbox.styles'
-          class="checkbox-item"
-          type="checkbox"
-          id="checkbox"
-          name="checkbox"
+            [ngStyle]='updatedEl.value.styles'
+            class="checkbox-item"
+            type="checkbox"
+            id="checkbox"
+            name="checkbox"
         >
         <label for="checkbox">Checkbox</label>
       </div>
@@ -60,15 +61,15 @@
 
     <ng-container *ngSwitchCase="'textarea'">
        <textarea
-          [attr.data-id]="addedObj.id"
-          [style]='elementStyles.textarea.styles'
-          placeholder="Textarea"
-          cdkDrag
-          class="textarea-item"
-          rows="10"
-          cols="45"
-          type="text"
-          name="textarea"
+           [attr.data-id]="updatedEl.key"
+           [ngStyle]='updatedEl.value.styles'
+           placeholder="Textarea"
+           cdkDrag
+           class="textarea-item"
+           rows="10"
+           cols="45"
+           type="text"
+           name="textarea"
        >
        </textarea>
     </ng-container>

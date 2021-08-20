@@ -1,12 +1,15 @@
 @import "src/app/scss/variables";
 
-.available-fields__wrapper{
-  margin: 60px 30px;
+.available-fields__wrapper {
+  margin: 60px 30px 0 30px;
+  height: 100%;
 }
-.available-fields__item{
+
+.available-fields__item {
   margin: 12px;
 }
-.button-item{
+
+.button-item {
   @include elementBorder;
   @include elementFont;
   width: 90px;
@@ -16,28 +19,32 @@
   cursor: pointer;
   color: $white;
 }
-.input-item{
+
+.input-item {
   @include elementBorder;
   @include elementFont;
   max-width: 350px;
   height: 35px;
   color: $grey;
 }
-.textarea-item{
+
+.textarea-item {
   @include elementBorder;
   @include elementFont;
   max-width: 350px;
   height: 120px;
   color: $grey;
 }
-.select-item{
+
+.select-item {
   @include elementBorder;
   @include elementFont;
   width: 120px;
   height: 35px;
   color: $grey;
 }
-.checkbox-item{
+
+.checkbox-item {
   width: 16px;
   height: 13px;
 }

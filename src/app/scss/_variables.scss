@@ -1,8 +1,8 @@
 /////Colors//////
 
-$grey:rgb(128, 128, 128);
+$grey: rgb(128, 128, 128);
 $mainColor: rgb(191, 227, 220);
-$headerColor:linear-gradient(2deg, rgb(191, 227, 220), rgb(85, 135, 147));
+$headerColor: linear-gradient(2deg, rgb(191, 227, 220), rgb(85, 135, 147));
 $editButtonColor: rgb(247, 247, 247);
 $white: rgb(255, 255, 255);
 $black: rgb(0, 0, 0);
@@ -12,15 +12,17 @@ $borderStyle: 1px solid $grey;
 
 /////Mixins/////
 
-@mixin elementFont{
+@mixin elementFont {
   font-size: 16px;
   font-weight: normal;
 }
-@mixin elementBorder{
+
+@mixin elementBorder {
   border-style: solid;
   border-radius: 10px;
 }
-@mixin buttonLog{
+
+@mixin buttonLog {
   padding: 3px 7px;
   margin: 18px 15px;
   border-radius: 20px;

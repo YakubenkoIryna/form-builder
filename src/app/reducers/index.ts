@@ -1,4 +1,5 @@
 import { ActionReducerMap, createSelector, MetaReducer } from '@ngrx/store';
+
 import { environment } from '../../environments/environment';
 import { FormReducer, formReducerNode } from './forms/forms.reducers';
 import { AuthReducer, authReducerNode, AuthState } from './auth/auth.reducers';
@@ -18,16 +19,15 @@ export const reducers: ActionReducerMap<IState> = {
 };
 export const getFormBuilderState = (state: IState) => state[formReducerNode];
 
-export const getAuthState = (state: AuthState) => state[authReducerNode]
-
+export const getAuthState = (state: AuthState) => state[authReducerNode];
 
 export const getFormsState = createSelector(
     getFormBuilderState,
     formSelector.selectFormElements
-)
+);
 export const getAuthorizationState = createSelector(
     getAuthState,
     authSelector.selectAuth
-)
+);
 
 export const metaReducers: MetaReducer<IState>[] = !environment.production ? [] : [];
