@@ -19,8 +19,7 @@ export class AuthService implements OnDestroy {
     constructor(
         private loginUserService: RequestService,
         public router: Router
-    ) {
-    }
+    ) { }
 
     login(user: IUser): void {
         this.loginUserService.loginUser(user)
@@ -28,7 +27,7 @@ export class AuthService implements OnDestroy {
             .subscribe((res: any) => {
                 if (res.token) {
                     localStorage.setItem('ourToken', res.token);
-                    this.router.navigate(['/form-builder']).then(res);
+                    this.router.navigate(['/form-builder']);
                 }
             });
     }

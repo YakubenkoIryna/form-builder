@@ -21,19 +21,16 @@ export class FormStylingComponent implements OnInit, OnDestroy {
     formStyle: FormGroup;
     value = '';
     public ngUnsubscribe$ = new Subject<void>();
-    public state = this.store$.select(getFormsState);
+    public state$ = this.store$.select(getFormsState);
 
-    constructor(
-        private store$: Store<IState>
-    ) {
-    }
+    constructor(private store$: Store<IState>) { }
 
     ngOnInit(): void {
         this.getItems();
     }
 
     getItems(): void {
-        this.state
+        this.state$
             .pipe(takeUntil(this.ngUnsubscribe$))
             .subscribe(data => this.items = data);
     }

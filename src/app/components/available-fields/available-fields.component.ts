@@ -17,14 +17,13 @@ import { DeleteElementAction } from '../../reducers/forms/forms.actions';
 export class AvailableFieldsComponent implements OnInit, OnDestroy {
 
     objects: IFormElements[] = [];
-    id: any;
+    id: number | string;
     public ngUnsubscribe$ = new Subject<void>();
 
     constructor(
         private requestService: RequestService,
         private store$: Store<IFormElementStyleState>
-    ) {
-    }
+    ) { }
 
     ngOnInit(): void {
         this.requestService.getObjects()
@@ -42,6 +41,7 @@ export class AvailableFieldsComponent implements OnInit, OnDestroy {
                 event.previousIndex,
                 event.currentIndex);
             this.id = event.item.element.nativeElement.dataset.id;
+            // @ts-ignore
             this.deleteElements(this.id);
         }
     }

@@ -7,6 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 import { AddElementAction } from '../../reducers/forms/forms.actions';
 import { CElementsStandardParams } from '../../constantes/constantes';
 import { getFormsState, IState } from '../../reducers';
+import { IFormElements } from '../../interfaces/interface';
 
 
 @Component({
@@ -19,23 +20,20 @@ export class FormBuilderComponent implements OnInit, OnDestroy {
 
     addedObjects = [];
     id: number;
-    currentElement: object | any;
-    elementNew: object | any;
-    elementStyles: any = CElementsStandardParams;
-    style: object | any;
+    currentElement: IFormElements;
+    elementNew: IFormElements;
+    elementStyles = CElementsStandardParams;
+    style: IFormElements;
     updatedElements: {};
     public ngUnsubscribe$ = new Subject<void>();
 
-    constructor(
-        private store$: Store<IState>,
-    ) {
-    }
+    constructor(private store$: Store<IState>) { }
 
     addElements(id: number, title: string, styles: object): void {
         this.store$.dispatch(new AddElementAction({ id, title, styles }));
     }
 
-    onDrop(event: CdkDragDrop<string[]>): void {
+    onDrop(event: CdkDragDrop<any>): void {
         if (event.previousContainer === event.container) {
             moveItemInArray(
                 event.container.data,
@@ -52,8 +50,8 @@ export class FormBuilderComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        const state = this.store$.select(getFormsState);
-        state
+        const state$ = this.store$.select(getFormsState);
+        state$
             .pipe(takeUntil(this.ngUnsubscribe$))
             .subscribe(data => {
                 this.updatedElements = data;

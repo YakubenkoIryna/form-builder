@@ -32,13 +32,13 @@ export class AuthInterceptor implements HttpInterceptor {
             .pipe(
                 tap((event) => {
                     if (event instanceof HttpResponse) {
-                        this.router.navigate(['/form-builder']).then();
+                        this.router.navigate(['/form-builder']);
                     }
                 }),
                 catchError((error: HttpErrorResponse) => {
                     if (error.status === 403) {
                         this.auth.logout();
-                        this.router.navigate(['/login']).then();
+                        this.router.navigate(['/login']);
                         alert('You dont have a permission! Check your email and password!')
                     }
                     return throwError(error);

@@ -1,3 +1,3 @@
 import { AuthState } from './auth.reducers';
 
-export const selectAuth = (state: AuthState): any => state;
+export const selectAuth = (state: AuthState) => state;

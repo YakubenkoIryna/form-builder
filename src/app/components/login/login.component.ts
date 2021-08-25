@@ -16,8 +16,7 @@ export class LoginComponent implements OnInit {
 
     form: FormGroup;
 
-    constructor(private store: Store, public auth: AuthService) {
-    }
+    constructor(private store: Store, public auth: AuthService) { }
 
     ngOnInit(): void {
         this.form = new FormGroup({
@@ -29,7 +28,6 @@ export class LoginComponent implements OnInit {
                 Validators.required,
                 Validators.minLength(6),
                 Validators.pattern(/^[a-zA-Z0-9]+$/)
-
             ])
         });
     }

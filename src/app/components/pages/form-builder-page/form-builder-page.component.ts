@@ -14,6 +14,6 @@ export class FormBuilderPageComponent {
 
     logout() {
         this.auth.logout();
-        this.route.navigate(['/']).then();
+        this.route.navigate(['/']);
     }
 }
