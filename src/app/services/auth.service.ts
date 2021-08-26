@@ -19,16 +19,17 @@ export class AuthService implements OnDestroy {
     constructor(
         private loginUserService: RequestService,
         public router: Router
-    ) { }
+    ) {
+    }
 
     login(user: IUser): void {
         this.loginUserService.loginUser(user)
             .pipe(takeUntil(this.ngUnsubscribe$))
             .subscribe((res: any) => {
-                if (res.token) {
-                    localStorage.setItem('ourToken', res.token);
-                    this.router.navigate(['/form-builder']);
-                }
+                res.token
+                    ? ( localStorage.setItem('ourToken', res.token),
+                      this.router.navigate(['/form-builder']))
+                    : null
             });
     }
 
