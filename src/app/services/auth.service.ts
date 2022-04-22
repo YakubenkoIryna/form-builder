@@ -13,7 +13,7 @@ import { RequestService } from './request.service';
 
 export class AuthService implements OnDestroy {
 
-    token: string;
+    // token: string;
     public ngUnsubscribe$ = new Subject<void>();
 
     constructor(

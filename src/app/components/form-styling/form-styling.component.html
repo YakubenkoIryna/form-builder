@@ -16,7 +16,7 @@
       </div>
       <span class="accordion-item-description">
             Click to {{ accordionItem.expanded ? 'close' : 'open' }}
-         </span>
+      </span>
     </div>
     <div *ngFor="let itemStyle of item.value.styles | keyvalue;"
          class="accordion-item-body"
@@ -24,7 +24,7 @@
          [style.display]="accordionItem.expanded ? '' : 'none'"
          [attr.id]="'form-styling-body-' + index"
          [attr.aria-labelledby]="'form-styling-header-' + index">
-      {{ itemStyle.key }}: {{ itemStyle.value }}
+         {{ itemStyle.key }}: {{ itemStyle.value }}
 
       <form *ngIf="stylesList.includes(itemStyle.key)"
             class="edit-style-form"
